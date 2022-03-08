@@ -88,7 +88,7 @@ class _InputListScreen extends State<InputListScreen> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                            color: Colors.pink[100],
+                            color: Colors.green[200],
                             borderRadius: BorderRadius.circular(12)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -100,13 +100,13 @@ class _InputListScreen extends State<InputListScreen> {
                                   fontSize: 18,
                                 )),
                             ...items
-                                .map((String val) => Container(
+                                .map((val) => Container(
                                     width: double.infinity,
                                     padding: const EdgeInsets.only(
                                         top: 8, bottom: 8),
                                     margin: const EdgeInsets.all(8),
                                     decoration: BoxDecoration(
-                                        color: Colors.pink[200],
+                                        color: Colors.green[100],
                                         borderRadius: BorderRadius.circular(8)),
                                     child: Text(
                                       val,

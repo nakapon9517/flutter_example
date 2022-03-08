@@ -4,6 +4,8 @@ import 'package:example/screens/local_storage_screen.dart';
 import 'package:example/screens/url_launcher_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'bottom_sheet_screen.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -12,7 +14,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> indexs = List.generate(120, (int index) => index.toString());
+  List<String> indexs = List.generate(120, (index) => index.toString());
 
   @override
   Widget build(BuildContext context) {
@@ -129,6 +131,23 @@ class _MyHomePageState extends State<MyHomePage> {
                     context,
                     MaterialPageRoute<StatefulWidget>(
                       builder: (context) => const UrlLauncherScreen(),
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                child: const Text(
+                  'Bottom sheet（modal）',
+                  style: TextStyle(fontSize: 16),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<StatefulWidget>(
+                      builder: (context) => const BottomSheetScreen(),
                     ),
                   );
                 },
