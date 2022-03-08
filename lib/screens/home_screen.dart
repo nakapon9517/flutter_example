@@ -1,3 +1,4 @@
+import 'package:example/components/app_drawer.dart';
 import 'package:example/screens/carousel_screen.dart';
 import 'package:example/screens/list_input_screen.dart';
 import 'package:example/screens/local_storage_screen.dart';
@@ -22,37 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: const <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.green,
-              ),
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.message),
-              title: Text('Messages'),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text('Profile'),
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-            ),
-          ],
-        ),
-      ),
+      drawer: AppDrawer(),
       body: Scrollbar(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(12),
