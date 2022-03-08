@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const String _url = 'https://flutter.dev';
-
 class UrlLauncherScreen extends StatefulWidget {
   const UrlLauncherScreen({Key? key}) : super(key: key);
 
@@ -11,11 +9,11 @@ class UrlLauncherScreen extends StatefulWidget {
 }
 
 class _UrlLauncherScreen extends State<UrlLauncherScreen> {
-  Future<void> _launchURL() async {
-    if (await canLaunch(_url)) {
-      await launch(_url);
+  Future<void> _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
     } else {
-      throw 'Could not launch $_url';
+      throw 'Could not launch $url';
     }
   }
 
@@ -35,11 +33,37 @@ class _UrlLauncherScreen extends State<UrlLauncherScreen> {
                 Expanded(
                   child: ElevatedButton(
                     child: const Text('Flutter公式'),
-                    onPressed: _launchURL,
+                    onPressed: () {
+                      _launchURL('https://flutter.dev');
+                    },
                   ),
                 )
               ],
-            )
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    child: const Text('GitHub'),
+                    onPressed: () {
+                      _launchURL('https://github.com/nakapon9517');
+                    },
+                  ),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    child: const Text('pub.dev'),
+                    onPressed: () {
+                      _launchURL('https://pub.dev/');
+                    },
+                  ),
+                )
+              ],
+            ),
           ],
         ),
       ),
