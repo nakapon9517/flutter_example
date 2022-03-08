@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:example/screens/carousel_screen.dart';
 import 'package:example/screens/list_input_screen.dart';
 import 'package:example/screens/local_storage_screen.dart';
+import 'package:example/screens/url_launcher_screen.dart';
+import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -54,13 +55,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(12),
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            const SizedBox(
+            SizedBox(
               width: double.infinity,
-              child: Image(
-                color: Colors.black87,
-                colorBlendMode: BlendMode.screen,
-                image: NetworkImage(
-                    'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+              child: Builder(
+                builder: (context) {
+                  return Image.asset(
+                    "images/horizon.png",
+                    fit: BoxFit.fitWidth,
+                  );
+                },
               ),
             ),
             SizedBox(
@@ -125,9 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute<StatefulWidget>(
-                      builder: (context) => const InputListScreen(
-                        title: '',
-                      ),
+                      builder: (context) => const UrlLauncherScreen(),
                     ),
                   );
                 },

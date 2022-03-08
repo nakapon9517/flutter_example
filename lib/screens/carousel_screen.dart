@@ -31,11 +31,11 @@ class _CarouselScreenState extends State<CarouselScreen> {
             enableInfiniteScroll: false,
             reverse: false,
           ),
-          items: images.map((i) {
+          items: images.map((image) {
             return Builder(
               builder: (BuildContext context) {
                 return Image.asset(
-                  i,
+                  image,
                   fit: BoxFit.fitWidth,
                 );
               },
