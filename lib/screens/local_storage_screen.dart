@@ -1,3 +1,5 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:flutter/material.dart';
 
 class LocalStorageScreen extends StatefulWidget {
@@ -6,8 +8,47 @@ class LocalStorageScreen extends StatefulWidget {
   State<LocalStorageScreen> createState() => _LocalStorageScreen();
 }
 
+enum Storage { slideValue }
+
 class _LocalStorageScreen extends State<LocalStorageScreen> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   double _slideValue = 0;
+  String slideKey = Storage.slideValue.toString();
+
+  @override
+  void initState() {
+    super.initState();
+    getSliderValue().then((value) {
+      setState(() {
+        _slideValue = (value ?? 0);
+      });
+    });
+  }
+
+  Future<void> setSliderValue(double value) async {
+    SharedPreferences prefs = await _prefs;
+    prefs.setDouble(slideKey, value);
+  }
+
+  Future<double?> getSliderValue() async {
+    SharedPreferences prefs = await _prefs;
+    return prefs.getDouble(slideKey);
+  }
+
+  Future<void> removeSliderValue() async {
+    SharedPreferences prefs = await _prefs;
+    prefs.remove(slideKey);
+    setState(() {
+      _slideValue = 0;
+    });
+  }
+
+  Future<void> onChangeSlide(double value) async {
+    await setSliderValue(value);
+    setState(() {
+      _slideValue = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +78,21 @@ class _LocalStorageScreen extends State<LocalStorageScreen> {
                       max: 100,
                       divisions: 5,
                       label: _slideValue.round().toString(),
-                      onChanged: (double value) {
-                        setState(() {
-                          _slideValue = value;
-                        });
-                      },
+                      onChanged: onChangeSlide,
                     )
                   ]),
                 ),
+                Row(children: [
+                  Expanded(
+                    flex: 1,
+                    child: ElevatedButton(
+                      child: const Text('Remove'),
+                      onPressed: () {
+                        removeSliderValue();
+                      },
+                    ),
+                  )
+                ]),
               ],
             ),
           ),

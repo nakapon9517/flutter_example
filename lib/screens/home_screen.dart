@@ -73,10 +73,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const InputListScreen(
-                              title: '',
-                            )),
+                    MaterialPageRoute<StatefulWidget>(
+                      builder: (context) => const InputListScreen(
+                        title: '',
+                      ),
+                    ),
                   );
                 },
               ),
@@ -91,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    MaterialPageRoute<StatefulWidget>(
                         builder: (context) => const LocalStorageScreen()),
                   );
                 },
@@ -107,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    MaterialPageRoute<StatefulWidget>(
                         builder: (context) => const CarouselScreen()),
                   );
                 },
@@ -123,10 +124,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const InputListScreen(
-                              title: '',
-                            )),
+                    MaterialPageRoute<StatefulWidget>(
+                      builder: (context) => const InputListScreen(
+                        title: '',
+                      ),
+                    ),
                   );
                 },
               ),

@@ -9,7 +9,7 @@ class CarouselScreen extends StatefulWidget {
 }
 
 class _CarouselScreenState extends State<CarouselScreen> {
-  final List images = [
+  final List<String> images = [
     "images/horizon.png",
     "images/horizon-forbidden-west-1.jpg",
     "images/horizon-forbidden-west-2.jpg",
