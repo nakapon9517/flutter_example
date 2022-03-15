@@ -1,8 +1,6 @@
 import 'package:example/constants.dart';
-import 'package:example/screens/bottom_sheet_screen.dart';
 import 'package:example/screens/list_input_screen.dart';
 import 'package:example/screens/local_storage_screen.dart';
-import 'package:example/screens/url_launcher_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -46,20 +44,6 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Slider / Storage'),
             onTap: () {
               _onPressNavigator(context, const LocalStorageScreen());
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.browser_updated),
-            title: const Text('Open browser'),
-            onTap: () {
-              _onPressNavigator(context, const UrlLauncherScreen());
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.border_bottom),
-            title: const Text('Bottom sheet'),
-            onTap: () {
-              _onPressNavigator(context, const BottomSheetScreen());
             },
           ),
         ],

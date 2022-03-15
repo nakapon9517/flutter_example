@@ -1,13 +1,12 @@
 import 'package:example/components/app_drawer.dart';
 import 'package:example/constants.dart';
-import 'package:example/screens/home/components/card_widget.dart';
-import 'package:example/screens/home/components/carousel.dart';
+import 'package:example/screens/home/widgets/bottom_sheet.dart';
+import 'package:example/screens/home/widgets/card_button.dart';
+import 'package:example/screens/home/widgets/carousel.dart';
 import 'package:example/screens/list_input_screen.dart';
 import 'package:example/screens/local_storage_screen.dart';
-import 'package:example/screens/url_launcher_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../bottom_sheet_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -30,39 +29,124 @@ class _MyHomePageState extends State<MyHomePage> {
       'LocalStorage',
       const LocalStorageScreen(),
     ),
-    Button(
-      'UrlLauncher',
-      const UrlLauncherScreen(),
-    ),
-    Button(
-      'ButtonSheet',
-      const BottomSheetScreen(),
-    ),
   ];
+
+  final double height = 240;
+
+  Future<void> _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          elevation: 0,
-          title: Text(widget.title),
-          backgroundColor: appPrimaryColor),
       drawer: AppDrawer(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Carousel(),
-          Expanded(
-            child: GridView.count(
-              crossAxisCount: 2,
-              childAspectRatio: 2 / 2,
-              children: List.generate(
-                  screens.length,
-                  (index) => (CardWidget(
-                      title: screens[index].title,
-                      screen: screens[index].screen))),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            snap: false,
+            floating: false,
+            backgroundColor: appPrimaryColor,
+            expandedHeight: height,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Carousel(
+                height: height + 80,
+              ),
             ),
           ),
+          SliverPadding(
+            padding: const EdgeInsets.all(defaultPadding),
+            sliver: SliverGrid.count(
+              crossAxisCount: 2,
+              crossAxisSpacing: defaultPadding,
+              mainAxisSpacing: defaultPadding,
+              childAspectRatio: 6 / 5,
+              children: List.generate(
+                screens.length,
+                (index) => (CardButton(
+                  index: index,
+                  title: screens[index].title,
+                  screen: screens[index].screen,
+                )),
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(
+                vertical: 0, horizontal: defaultPadding),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  ElevatedButton(
+                    child: const Text(
+                      'Bottom sheet',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: appPrimaryColor,
+                      onPrimary: appPrimaryColor,
+                    ),
+                    onPressed: () {
+                      showModalBottomSheet<Widget>(
+                        context: context,
+                        builder: (context) {
+                          return const BottomSheetModal();
+                        },
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text(
+                      'GitHub',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: appPrimaryColor,
+                      onPrimary: appPrimaryColor,
+                    ),
+                    onPressed: () {
+                      _launchURL('https://github.com/nakapon9517');
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text(
+                      'pub.dev',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: appPrimaryColor,
+                      onPrimary: appPrimaryColor,
+                    ),
+                    onPressed: () {
+                      _launchURL('https://pub.dev/');
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text(
+                      'Flutter公式',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: appPrimaryColor,
+                      onPrimary: appPrimaryColor,
+                    ),
+                    onPressed: () {
+                      _launchURL('https://flutter.dev');
+                    },
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );

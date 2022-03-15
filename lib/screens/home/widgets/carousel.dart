@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 class Carousel extends StatelessWidget {
   Carousel({
     Key? key,
+    required this.height,
   }) : super(key: key);
+
+  final double height;
 
   final List<String> images = [
     "assets/images/horizon.png",
@@ -18,6 +21,7 @@ class Carousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
+        height: height,
         initialPage: 0,
         viewportFraction: 1,
         enableInfiniteScroll: false,
@@ -28,7 +32,7 @@ class Carousel extends StatelessWidget {
           builder: (context) {
             return Image.asset(
               image,
-              fit: BoxFit.fitWidth,
+              fit: BoxFit.fitHeight,
             );
           },
         );

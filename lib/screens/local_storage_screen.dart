@@ -1,6 +1,6 @@
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:flutter/material.dart';
+
+import '../repositories/local_storage.dart';
 
 class LocalStorageScreen extends StatefulWidget {
   const LocalStorageScreen({Key? key}) : super(key: key);
@@ -11,40 +11,26 @@ class LocalStorageScreen extends StatefulWidget {
 enum Storage { slideValue }
 
 class _LocalStorageScreen extends State<LocalStorageScreen> {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  final _localStorage = LocalStorageRepository<double>();
   double _slideValue = 0;
   String slideKey = Storage.slideValue.toString();
 
   @override
   void initState() {
     super.initState();
-    getSliderValue().then((value) {
-      setState(() {
-        _slideValue = (value ?? 0);
-      });
-    });
-  }
-
-  Future<void> setSliderValue(double value) async {
-    SharedPreferences prefs = await _prefs;
-    prefs.setDouble(slideKey, value);
-  }
-
-  Future<double?> getSliderValue() async {
-    SharedPreferences prefs = await _prefs;
-    return prefs.getDouble(slideKey);
-  }
-
-  Future<void> removeSliderValue() async {
-    SharedPreferences prefs = await _prefs;
-    prefs.remove(slideKey);
-    setState(() {
-      _slideValue = 0;
-    });
+    _localStorage.getAll(slideKey).then(
+          (value) => {
+            setState(
+              () {
+                _slideValue = (value ?? 0);
+              },
+            )
+          },
+        );
   }
 
   Future<void> onChangeSlide(double value) async {
-    await setSliderValue(value);
+    await _localStorage.save(slideKey, value);
     setState(() {
       _slideValue = value;
     });
@@ -88,7 +74,7 @@ class _LocalStorageScreen extends State<LocalStorageScreen> {
                     child: ElevatedButton(
                       child: const Text('Remove'),
                       onPressed: () {
-                        removeSliderValue();
+                        _localStorage.remove(slideKey);
                       },
                     ),
                   )
