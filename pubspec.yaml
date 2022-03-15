@@ -28,7 +28,7 @@ flutter:
   # Asset variantsについて（解像度など動的に画像を切り替えたい場合に利用）
   # https://flutter.dev/assets-and-images/#resolution-aware.
   assets:
-    - images/
+    - assets/images/
 
   # fonts:
   #   - family: Schyler

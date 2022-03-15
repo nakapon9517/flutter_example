@@ -1,5 +1,5 @@
+import 'package:example/constants.dart';
 import 'package:example/screens/bottom_sheet_screen.dart';
-import 'package:example/screens/carousel_screen.dart';
 import 'package:example/screens/list_input_screen.dart';
 import 'package:example/screens/local_storage_screen.dart';
 import 'package:example/screens/url_launcher_screen.dart';
@@ -23,7 +23,7 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.green,
+              color: appPrimaryColor,
             ),
             child: Text(
               'Drawer Header',
@@ -46,13 +46,6 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Slider / Storage'),
             onTap: () {
               _onPressNavigator(context, const LocalStorageScreen());
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.image),
-            title: const Text('Carousel'),
-            onTap: () {
-              _onPressNavigator(context, const CarouselScreen());
             },
           ),
           ListTile(

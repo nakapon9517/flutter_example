@@ -1,3 +1,4 @@
+import 'package:example/constants.dart';
 import 'package:example/screens/root_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +14,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primaryColor: appPrimaryColor,
+        textTheme: Theme.of(context).textTheme.apply(bodyColor: appTextColor),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: const RootScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
