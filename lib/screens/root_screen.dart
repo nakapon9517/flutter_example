@@ -13,7 +13,7 @@ class _RootState extends State<RootScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const MyHomePage(title: 'Home'),
+    const HomeScreen(title: 'Home'),
     const SettingsScreen(),
   ];
 

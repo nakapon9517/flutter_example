@@ -1,5 +1,6 @@
 import 'package:example/components/app_drawer.dart';
 import 'package:example/constants.dart';
+import 'package:example/screens/chat/chat_screen.dart';
 import 'package:example/screens/home/widgets/bottom_sheet.dart';
 import 'package:example/screens/home/widgets/card_button.dart';
 import 'package:example/screens/home/widgets/carousel.dart';
@@ -8,14 +9,14 @@ import 'package:example/screens/slider/slider_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key, required this.title}) : super(key: key);
   final String title;
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   List<String> indexs = List.generate(120, (index) => index.toString());
 
   List<Button> screens = [
@@ -83,6 +84,27 @@ class _MyHomePageState extends State<MyHomePage> {
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
+                  ElevatedButton(
+                    child: const Text(
+                      'Chat',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: defaultPadding * 2),
+                      primary: Colors.amber[700],
+                      onPrimary: Colors.amber[700],
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<StatefulWidget>(
+                            builder: (context) => ChatScreen()),
+                      );
+                    },
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: defaultPadding / 2),
