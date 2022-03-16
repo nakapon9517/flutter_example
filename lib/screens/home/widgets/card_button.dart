@@ -2,14 +2,9 @@ import 'package:example/constants.dart';
 import 'package:flutter/material.dart';
 
 class CardButton extends StatelessWidget {
-  const CardButton(
-      {Key? key,
-      required this.index,
-      required this.title,
-      required this.screen})
+  const CardButton({Key? key, required this.title, required this.screen})
       : super(key: key);
 
-  final int index;
   final String title;
   final StatefulWidget screen;
 
@@ -21,7 +16,9 @@ class CardButton extends StatelessWidget {
         style: const TextStyle(fontSize: 16, color: Colors.white),
       ),
       style: ElevatedButton.styleFrom(
-          primary: appPrimaryColor, onPrimary: appPrimaryColor),
+        primary: appBackgroundColor,
+        onPrimary: appPrimaryColor,
+      ),
       onPressed: () {
         Navigator.push(
           context,

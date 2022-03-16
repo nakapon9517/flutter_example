@@ -1,7 +1,8 @@
 import 'package:example/constants.dart';
-import 'package:example/screens/list_input_screen.dart';
-import 'package:example/screens/local_storage_screen.dart';
+import 'package:example/screens/slider/slider_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../screens/login/login_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   void _onPressNavigator(BuildContext context, StatefulWidget widget) {
@@ -33,10 +34,9 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.edit),
-            title: const Text('Input'),
+            title: const Text('Login'),
             onTap: () {
-              _onPressNavigator(
-                  context, const InputListScreen(title: 'Input / List'));
+              _onPressNavigator(context, const LoginScreen(title: 'Login'));
             },
           ),
           ListTile(

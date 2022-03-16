@@ -1,5 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+// TODO parseなどで他の型も扱えないか
+
 abstract class ILocalStorageRepository<T> {
   Future<T?> getAll(String key);
   Future<void> save(String key, T item);
@@ -24,12 +26,12 @@ class LocalStorageRepository<T> extends ILocalStorageRepository<T> {
   @override
   Future<void> save(String key, T item) async {
     SharedPreferences prefs = await _prefs;
-    if (item is int) prefs.setInt(key, item);
-    if (item is bool) prefs.setBool(key, item);
-    if (item is double) prefs.setDouble(key, item);
-    if (item is String) prefs.setString(key, item);
-    if (item is List<String>) prefs.setStringList(key, item);
-    throw Exception('not supported type');
+    if (isType<T, int>()) prefs.setInt(key, item as int);
+    if (isType<T, bool>()) prefs.setBool(key, item as bool);
+    if (isType<T, double>()) prefs.setDouble(key, item as double);
+    if (isType<T, String>()) prefs.setString(key, item as String);
+    if (isType<T, List<String>>())
+      prefs.setStringList(key, item as List<String>);
   }
 
   @override

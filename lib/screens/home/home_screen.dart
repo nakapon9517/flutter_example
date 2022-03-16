@@ -3,8 +3,8 @@ import 'package:example/constants.dart';
 import 'package:example/screens/home/widgets/bottom_sheet.dart';
 import 'package:example/screens/home/widgets/card_button.dart';
 import 'package:example/screens/home/widgets/carousel.dart';
-import 'package:example/screens/list_input_screen.dart';
-import 'package:example/screens/local_storage_screen.dart';
+import 'package:example/screens/login/login_screen.dart';
+import 'package:example/screens/slider/slider_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -20,9 +20,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Button> screens = [
     Button(
-      'Input/List',
-      const InputListScreen(
-        title: 'Input/List',
+      'Login',
+      const LoginScreen(
+        title: 'Login',
       ),
     ),
     Button(
@@ -54,13 +54,15 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor: appPrimaryColor,
             expandedHeight: height,
             flexibleSpace: FlexibleSpaceBar(
+              title: const Text('Horizon'),
               background: Carousel(
                 height: height + 80,
               ),
             ),
           ),
           SliverPadding(
-            padding: const EdgeInsets.all(defaultPadding),
+            padding: const EdgeInsets.symmetric(
+                vertical: defaultPadding / 2, horizontal: defaultPadding),
             sliver: SliverGrid.count(
               crossAxisCount: 2,
               crossAxisSpacing: defaultPadding,
@@ -69,7 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
               children: List.generate(
                 screens.length,
                 (index) => (CardButton(
-                  index: index,
                   title: screens[index].title,
                   screen: screens[index].screen,
                 )),
@@ -82,66 +83,94 @@ class _MyHomePageState extends State<MyHomePage> {
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  ElevatedButton(
-                    child: const Text(
-                      'Bottom sheet',
-                      style: TextStyle(
-                        color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: defaultPadding / 2),
+                    child: ElevatedButton(
+                      child: const Text(
+                        'Bottom sheet',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: appPrimaryColor,
-                      onPrimary: appPrimaryColor,
-                    ),
-                    onPressed: () {
-                      showModalBottomSheet<Widget>(
-                        context: context,
-                        builder: (context) {
-                          return const BottomSheetModal();
-                        },
-                      );
-                    },
-                  ),
-                  ElevatedButton(
-                    child: const Text(
-                      'GitHub',
-                      style: TextStyle(
-                        color: Colors.white,
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: defaultPadding * 2),
+                        primary: appPrimaryColor,
+                        onPrimary: appPrimaryColor,
                       ),
+                      onPressed: () {
+                        showModalBottomSheet<Widget>(
+                          context: context,
+                          builder: (context) {
+                            return const BottomSheetModal();
+                          },
+                        );
+                      },
                     ),
-                    style: ElevatedButton.styleFrom(
-                      primary: appPrimaryColor,
-                      onPrimary: appPrimaryColor,
-                    ),
-                    onPressed: () {
-                      _launchURL('https://github.com/nakapon9517');
-                    },
                   ),
-                  ElevatedButton(
-                    child: const Text(
-                      'pub.dev',
-                      style: TextStyle(color: Colors.white),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: defaultPadding / 2),
+                    child: ElevatedButton(
+                      child: const Text(
+                        'GitHub',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: defaultPadding * 2),
+                        primary: appPrimaryColor,
+                        onPrimary: appPrimaryColor,
+                      ),
+                      onPressed: () {
+                        _launchURL('https://github.com/nakapon9517');
+                      },
                     ),
-                    style: ElevatedButton.styleFrom(
-                      primary: appPrimaryColor,
-                      onPrimary: appPrimaryColor,
-                    ),
-                    onPressed: () {
-                      _launchURL('https://pub.dev/');
-                    },
                   ),
-                  ElevatedButton(
-                    child: const Text(
-                      'Flutter公式',
-                      style: TextStyle(color: Colors.white),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: defaultPadding / 2),
+                    child: ElevatedButton(
+                      child: const Text(
+                        'pub.dev',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: defaultPadding * 2),
+                        primary: appPrimaryColor,
+                        onPrimary: appPrimaryColor,
+                      ),
+                      onPressed: () {
+                        _launchURL('https://pub.dev/');
+                      },
                     ),
-                    style: ElevatedButton.styleFrom(
-                      primary: appPrimaryColor,
-                      onPrimary: appPrimaryColor,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: defaultPadding / 2),
+                    child: ElevatedButton(
+                      child: const Text(
+                        'Flutter公式',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: defaultPadding * 2),
+                        primary: appPrimaryColor,
+                        onPrimary: appPrimaryColor,
+                      ),
+                      onPressed: () {
+                        _launchURL('https://flutter.dev');
+                      },
                     ),
-                    onPressed: () {
-                      _launchURL('https://flutter.dev');
-                    },
                   ),
                 ],
               ),
