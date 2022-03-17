@@ -1,9 +1,9 @@
 [
   {
     "author": {
-      "firstName": "美美",
-      "id": "b4878b96-efbc-479a-8291-474ef323dec7",
-      "imageUrl": "https://avatars.githubusercontent.com/u/14123304?v=4"
+      "firstName": "なかぽん",
+      "id": "06c33e8b-e835-4736-80f4-63f44b66666c",
+      "imageUrl": "https://avatars.githubusercontent.com/u/62886817?v=4"
     },
     "createdAt": 1598438797000,
     "id": "e7a673e9-86eb-4572-936f-2882b0183cdc",
@@ -13,9 +13,9 @@
   },
   {
     "author": {
-      "firstName": "美美",
+      "firstName": "スプ＾",
       "id": "b4878b96-efbc-479a-8291-474ef323dec7",
-      "imageUrl": "https://avatars.githubusercontent.com/u/14123304?v=4"
+      "imageUrl": "https://raw.githubusercontent.com/nakapon9517/flutter_example/main/assets/images/supu-1.jpeg"
     },
     "createdAt": 1598438793000,
     "id": "2a202811-7d48-4ae9-8323-d764a56031dc",
@@ -32,14 +32,14 @@
     "createdAt": 1598438792000,
     "id": "0371b8f4-314a-448e-85ba-9c7dc5ed7a1e",
     "status": "seen",
-    "text": "なんて君は素敵な女性なんだ…!!",
+    "text": "なんて君は素敵な生物なんだ…!!",
     "type": "text"
   },
   {
     "author": {
-      "firstName": "美美",
+      "firstName": "スプー",
       "id": "b4878b96-efbc-479a-8291-474ef323dec7",
-      "imageUrl": "https://avatars.githubusercontent.com/u/14123304?v=4"
+      "imageUrl": "https://raw.githubusercontent.com/nakapon9517/flutter_example/main/assets/images/supu-1.jpeg"
     },
     "createdAt": 1598438791000,
     "id": "db334c22-1fc4-4951-86b2-1eb7f7262743",
@@ -73,9 +73,9 @@
   },
   {
     "author": {
-      "firstName": "美美",
+      "firstName": "スプー",
       "id": "b4878b96-efbc-479a-8291-474ef323dec7",
-      "imageUrl": "https://avatars.githubusercontent.com/u/14123304?v=4"
+      "imageUrl": "https://raw.githubusercontent.com/nakapon9517/flutter_example/main/assets/images/supu-1.jpeg"
     },
     "createdAt": 1598438788000,
     "id": "b23e5907-6d8b-4134-8cf3-c6dd34fc42d2",
@@ -92,14 +92,14 @@
     "createdAt": 1598438787000,
     "id": "83093c75-2efb-47bc-84d6-37dbc53bb5de",
     "status": "seen",
-    "text": "お前鏡見たことないのかよ。そんな写真ばら撒くなって、コロナより悪質。",
+    "text": "お前鏡見たことないのかよ。そんな写真ばら撒くなって、コロナより悪質じゃん。",
     "type": "text"
   },
   {
     "author": {
-      "firstName": "美美",
+      "firstName": "スプー",
       "id": "b4878b96-efbc-479a-8291-474ef323dec7",
-      "imageUrl": "https://avatars.githubusercontent.com/u/14123304?v=4"
+      "imageUrl": "https://raw.githubusercontent.com/nakapon9517/flutter_example/main/assets/images/supu-1.jpeg"
     },
     "createdAt": 1598438786000,
     "id": "8fa70836-3309-4d09-a777-4d9603e1f123",
@@ -109,9 +109,9 @@
   },
   {
     "author": {
-      "firstName": "美美",
+      "firstName": "スプー",
       "id": "b4878b96-efbc-479a-8291-474ef323dec7",
-      "imageUrl": "https://avatars.githubusercontent.com/u/14123304?v=4"
+      "imageUrl": "https://raw.githubusercontent.com/nakapon9517/flutter_example/main/assets/images/supu-1.jpeg"
     },
     "createdAt": 1598438785000,
     "height": 600,
@@ -120,14 +120,14 @@
     "size": 59645,
     "status": "seen",
     "type": "image",
-    "uri": "assets/images/supu-2.jpeg",
+    "uri": "https://raw.githubusercontent.com/nakapon9517/flutter_example/main/assets/images/supu-2.jpeg",
     "width": 1128
   },
   {
     "author": {
-      "firstName": "美美",
+      "firstName": "スプー",
       "id": "b4878b96-efbc-479a-8291-474ef323dec7",
-      "imageUrl": "https://avatars.githubusercontent.com/u/14123304?v=4"
+      "imageUrl": "https://raw.githubusercontent.com/nakapon9517/flutter_example/main/assets/images/supu-1.jpeg"
     },
     "createdAt": 1598438784000,
     "id": "8fa70836-3309-4d09-a777-4d9603e1f125",
@@ -136,6 +136,6 @@
     "size": 59645,
     "status": "seen",
     "type": "file",
-    "uri": "assets/images/supu-2.jpeg"
+    "uri": "https://raw.githubusercontent.com/nakapon9517/flutter_example/main/assets/images/supu-2.jpeg"
   }
 ]
