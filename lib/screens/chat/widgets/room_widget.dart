@@ -31,7 +31,7 @@ class _RoomWidgetState extends State<RoomWidget> {
           itemBuilder: (context, index) {
             return Container(
               padding: const EdgeInsets.symmetric(
-                vertical: defaultPadding,
+                vertical: defaultPadding / 2,
                 horizontal: defaultPadding,
               ),
               child: MessageWidget(widget.room.messages[index]),

@@ -29,7 +29,7 @@ class _MessageState extends State<MessageWidget> {
         ),
         ConstrainedBox(
           constraints: BoxConstraints(
-            maxWidth: config.width() * 0.8,
+            maxWidth: config.width() * 0.7,
           ),
           child: Container(
             decoration: BoxDecoration(
@@ -59,7 +59,7 @@ class _MessageState extends State<MessageWidget> {
       children: [
         ConstrainedBox(
           constraints: BoxConstraints(
-            maxWidth: config.width() * 0.8,
+            maxWidth: config.width() * 0.7,
           ),
           child: Container(
             decoration: BoxDecoration(
@@ -78,12 +78,6 @@ class _MessageState extends State<MessageWidget> {
                 color: Theme.of(context).primaryTextTheme.headline6!.color,
               ),
             ),
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(left: 4),
-          child: CircleAvatar(
-            foregroundImage: NetworkImage(widget.message.user.imageUrl),
           ),
         ),
       ],

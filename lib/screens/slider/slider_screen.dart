@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../repositories/local_storage.dart';
+import '../../repositories/local_storage_repository.dart';
 
 class LocalStorageScreen extends StatefulWidget {
   const LocalStorageScreen({Key? key}) : super(key: key);
