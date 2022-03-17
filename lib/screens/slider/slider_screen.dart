@@ -8,8 +8,6 @@ class LocalStorageScreen extends StatefulWidget {
   State<LocalStorageScreen> createState() => _LocalStorageScreen();
 }
 
-enum Storage { slideValue }
-
 class _LocalStorageScreen extends State<LocalStorageScreen> {
   final _localStorage = LocalStorageRepository<double>();
   double _slideValue = 0;

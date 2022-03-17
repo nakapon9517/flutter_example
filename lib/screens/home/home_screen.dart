@@ -7,7 +7,11 @@ import 'package:example/screens/home/widgets/carousel.dart';
 import 'package:example/screens/login/login_screen.dart';
 import 'package:example/screens/slider/slider_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../repositories/local_storage.dart';
+import '../../utils/theme.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required this.title}) : super(key: key);
@@ -18,6 +22,17 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<String> indexs = List.generate(120, (index) => index.toString());
+  final _localStorage = LocalStorageRepository<bool>();
+  final _isDarkKey = Storage.isDark.toString();
+  bool _isDark = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _localStorage
+        .getAll(_isDarkKey)
+        .then((value) => {_isDark = (value ?? false)});
+  }
 
   List<Button> screens = [
     Button(
@@ -33,6 +48,11 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   final double height = 240;
+
+  void _onChangeTheme(BuildContext context) {
+    // _localStorage.save(_isDarkKey, !_isDark);
+    Provider.of<MyTheme>(context, listen: false).toggle();
+  }
 
   Future<void> _launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -52,7 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
             pinned: true,
             snap: false,
             floating: false,
-            backgroundColor: appPrimaryColor,
             expandedHeight: height,
             flexibleSpace: FlexibleSpaceBar(
               title: const Text('Horizon'),
@@ -63,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(
-                vertical: defaultPadding / 2, horizontal: defaultPadding),
+                vertical: defaultPadding, horizontal: defaultPadding),
             sliver: SliverGrid.count(
               crossAxisCount: 2,
               crossAxisSpacing: defaultPadding,
@@ -80,7 +99,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(
-                vertical: 0, horizontal: defaultPadding),
+              vertical: 0,
+              horizontal: defaultPadding,
+            ),
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
@@ -107,7 +128,31 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: defaultPadding / 2),
+                      vertical: defaultPadding / 2,
+                    ),
+                    child: ElevatedButton(
+                      child: const Text(
+                        'change Dark mode',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: defaultPadding * 2,
+                        ),
+                        primary: Theme.of(context).primaryColor,
+                        onPrimary: Theme.of(context).primaryColor,
+                      ),
+                      onPressed: () {
+                        _onChangeTheme(context);
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: defaultPadding / 2,
+                    ),
                     child: ElevatedButton(
                       child: const Text(
                         'Bottom sheet',
@@ -118,8 +163,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(
                             vertical: defaultPadding * 2),
-                        primary: appPrimaryColor,
-                        onPrimary: appPrimaryColor,
+                        primary: Theme.of(context).primaryColor,
+                        onPrimary: Theme.of(context).primaryColor,
                       ),
                       onPressed: () {
                         showModalBottomSheet<Widget>(
@@ -144,8 +189,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(
                             vertical: defaultPadding * 2),
-                        primary: appPrimaryColor,
-                        onPrimary: appPrimaryColor,
+                        primary: Theme.of(context).primaryColor,
+                        onPrimary: Theme.of(context).primaryColor,
                       ),
                       onPressed: () {
                         _launchURL('https://github.com/nakapon9517');
@@ -165,8 +210,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(
                             vertical: defaultPadding * 2),
-                        primary: appPrimaryColor,
-                        onPrimary: appPrimaryColor,
+                        primary: Theme.of(context).primaryColor,
+                        onPrimary: Theme.of(context).primaryColor,
                       ),
                       onPressed: () {
                         _launchURL('https://pub.dev/');
@@ -186,8 +231,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(
                             vertical: defaultPadding * 2),
-                        primary: appPrimaryColor,
-                        onPrimary: appPrimaryColor,
+                        primary: Theme.of(context).primaryColor,
+                        onPrimary: Theme.of(context).primaryColor,
                       ),
                       onPressed: () {
                         _launchURL('https://flutter.dev');

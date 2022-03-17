@@ -20,11 +20,11 @@ class AppDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          const DrawerHeader(
+          DrawerHeader(
             decoration: BoxDecoration(
-              color: appPrimaryColor,
+              color: Theme.of(context).primaryColor,
             ),
-            child: Text(
+            child: const Text(
               'Drawer Header',
               style: TextStyle(
                 color: Colors.white,

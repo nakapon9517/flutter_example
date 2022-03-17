@@ -40,3 +40,5 @@ class LocalStorageRepository<T> extends ILocalStorageRepository<T> {
     prefs.remove(key);
   }
 }
+
+enum Storage { slideValue, isDark }

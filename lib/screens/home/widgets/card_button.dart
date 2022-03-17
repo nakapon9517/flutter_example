@@ -1,4 +1,3 @@
-import 'package:example/constants.dart';
 import 'package:flutter/material.dart';
 
 class CardButton extends StatelessWidget {
@@ -13,11 +12,14 @@ class CardButton extends StatelessWidget {
     return ElevatedButton(
       child: Text(
         title,
-        style: const TextStyle(fontSize: 16, color: Colors.white),
+        style: Theme.of(context)
+            .textTheme
+            .bodyMedium!
+            .copyWith(color: Colors.white),
       ),
       style: ElevatedButton.styleFrom(
-        primary: appBackgroundColor,
-        onPrimary: appPrimaryColor,
+        primary: Theme.of(context).primaryColor,
+        onPrimary: Theme.of(context).primaryColor,
       ),
       onPressed: () {
         Navigator.push(

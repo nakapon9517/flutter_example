@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:example/constants.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -37,7 +36,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void _handleAtachmentPressed() {
     showModalBottomSheet<void>(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return SafeArea(
           child: SizedBox(
             height: 144,
@@ -167,16 +166,41 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
+  TextStyle getBodyTextStyle(BuildContext context) {
+    return const TextStyle(
+      fontSize: 16,
+      height: 1.5,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('title'),
-        backgroundColor: appPrimaryColor,
+        title: const Text(
+          'title',
+        ),
       ),
       body: SafeArea(
         bottom: false,
         child: Chat(
+          showUserAvatars: true,
+          showUserNames: true,
+          theme: DefaultChatTheme(
+            receivedMessageBodyTextStyle: getBodyTextStyle(context),
+            receivedMessageCaptionTextStyle: getBodyTextStyle(context),
+            receivedMessageLinkDescriptionTextStyle: getBodyTextStyle(context),
+            receivedMessageLinkTitleTextStyle: getBodyTextStyle(context),
+            // sentMessageBodyTextStyle: getBodyTextStyle(context),
+            // sentMessageCaptionTextStyle: getBodyTextStyle(context),
+            primaryColor: Theme.of(context).primaryColor,
+            secondaryColor: Theme.of(context).primaryColor.withOpacity(0.1),
+            inputBackgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          ),
+          onAvatarTap: (user) {
+            print('tap avatar${user.id}');
+          },
           messages: _messages,
           onAttachmentPressed: _handleAtachmentPressed,
           onMessageTap: _handleMessageTap,
