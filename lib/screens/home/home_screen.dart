@@ -1,6 +1,6 @@
 import 'package:example/components/app_drawer.dart';
 import 'package:example/constants.dart';
-import 'package:example/screens/chat/chat_screen.dart';
+import 'package:example/screens/chat_ui/chat_ui_screen.dart';
 import 'package:example/screens/home/widgets/bottom_sheet.dart';
 import 'package:example/screens/home/widgets/card_button.dart';
 import 'package:example/screens/home/widgets/carousel.dart';
@@ -12,6 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../repositories/local_storage.dart';
 import '../../utils/theme.dart';
+import '../chat/chat_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required this.title}) : super(key: key);
@@ -81,54 +82,72 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           SliverPadding(
-            padding: const EdgeInsets.symmetric(
-                vertical: defaultPadding, horizontal: defaultPadding),
-            sliver: SliverGrid.count(
-              crossAxisCount: 2,
-              crossAxisSpacing: defaultPadding,
-              mainAxisSpacing: defaultPadding,
-              childAspectRatio: 6 / 5,
-              children: List.generate(
-                screens.length,
-                (index) => (CardButton(
-                  title: screens[index].title,
-                  screen: screens[index].screen,
-                )),
-              ),
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 0,
-              horizontal: defaultPadding,
+            padding: const EdgeInsets.only(
+              top: defaultPadding,
+              bottom: defaultPadding / 2,
+              left: defaultPadding,
+              right: defaultPadding,
             ),
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  ElevatedButton(
-                    child: const Text(
-                      'Chat',
-                      style: TextStyle(
-                        color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: defaultPadding / 2,
+                    ),
+                    child: ElevatedButton(
+                      child: const Text(
+                        'original_caht',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: defaultPadding * 2,
+                        ),
+                        primary: Colors.amber[700],
+                        onPrimary: Colors.amber[700],
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<StatefulWidget>(
+                              builder: (context) => const ChatScreen()),
+                        );
+                      },
                     ),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: defaultPadding * 2),
-                      primary: Colors.amber[700],
-                      onPrimary: Colors.amber[700],
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<StatefulWidget>(
-                            builder: (context) => ChatScreen()),
-                      );
-                    },
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: defaultPadding / 2,
+                    padding: const EdgeInsets.only(
+                      bottom: defaultPadding / 2,
+                    ),
+                    child: ElevatedButton(
+                      child: const Text(
+                        'flutter_chat_ui',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: defaultPadding * 2,
+                        ),
+                        primary: Theme.of(context).primaryColor,
+                        onPrimary: Theme.of(context).primaryColor,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<StatefulWidget>(
+                              builder: (context) => const ChatUiScreen()),
+                        );
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: defaultPadding / 2,
                     ),
                     child: ElevatedButton(
                       child: const Text(
@@ -149,9 +168,41 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                   ),
+                ],
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.only(
+              bottom: defaultPadding,
+              left: defaultPadding,
+              right: defaultPadding,
+            ),
+            sliver: SliverGrid.count(
+              crossAxisCount: 2,
+              crossAxisSpacing: defaultPadding,
+              mainAxisSpacing: defaultPadding,
+              childAspectRatio: 6 / 5,
+              children: List.generate(
+                screens.length,
+                (index) => (CardButton(
+                  title: screens[index].title,
+                  screen: screens[index].screen,
+                )),
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.only(
+              left: defaultPadding,
+              right: defaultPadding,
+            ),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate(
+                [
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: defaultPadding / 2,
+                    padding: const EdgeInsets.only(
+                      bottom: defaultPadding / 2,
                     ),
                     child: ElevatedButton(
                       child: const Text(
@@ -177,8 +228,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: defaultPadding / 2),
+                    padding: const EdgeInsets.only(
+                      bottom: defaultPadding / 2,
+                    ),
                     child: ElevatedButton(
                       child: const Text(
                         'GitHub',
@@ -198,8 +250,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: defaultPadding / 2),
+                    padding: const EdgeInsets.only(
+                      bottom: defaultPadding / 2,
+                    ),
                     child: ElevatedButton(
                       child: const Text(
                         'pub.dev',
@@ -219,8 +272,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: defaultPadding / 2),
+                    padding: const EdgeInsets.only(
+                      bottom: defaultPadding / 2,
+                    ),
                     child: ElevatedButton(
                       child: const Text(
                         'Flutter公式',
@@ -242,7 +296,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
