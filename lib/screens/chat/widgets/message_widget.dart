@@ -33,7 +33,11 @@ class _MessageState extends State<MessageWidget> {
           ),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12),
+                bottomRight: Radius.circular(12),
+              ),
               color: Theme.of(context).primaryColor.withOpacity(0.1),
             ),
             padding: const EdgeInsets.only(
@@ -63,7 +67,11 @@ class _MessageState extends State<MessageWidget> {
           ),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12),
+                bottomLeft: Radius.circular(12),
+              ),
               color: Theme.of(context).primaryColor,
             ),
             padding: const EdgeInsets.only(

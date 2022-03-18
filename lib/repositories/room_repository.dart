@@ -10,9 +10,9 @@ class RoomRepository {
 }
 
 List<Room> rooms = [
-  Room('room-id-1', Role.admin, 'title1', messages, DateTime.now(),
+  Room('room-id-1', Role.admin, 'room-1', messages, DateTime.now(),
       DateTime.now()),
-  Room('room-id-2', Role.admin, 'title2', messages, DateTime.now(),
+  Room('room-id-2', Role.admin, 'room-2', messages, DateTime.now(),
       DateTime.now()),
 ];
 

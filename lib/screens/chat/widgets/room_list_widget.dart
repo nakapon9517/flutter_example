@@ -14,41 +14,42 @@ class RoomList extends StatefulWidget {
 class _RoomListState extends State<RoomList> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(defaultPadding),
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: defaultPadding,
-              horizontal: defaultPadding,
-            ),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<StatefulWidget>(
-                    builder: (context) => RoomWidget(room: widget.rooms[index]),
-                  ),
-                );
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Text(
-                      widget.rooms[index].title,
-                    ),
-                  ),
-                  const Icon(Icons.navigate_next)
-                ],
+    return ListView.separated(
+      separatorBuilder: (context, index) {
+        return const Divider(height: 1);
+      },
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute<StatefulWidget>(
+                builder: (context) => RoomWidget(room: widget.rooms[index]),
               ),
+            );
+          },
+          child: Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            padding: const EdgeInsets.symmetric(
+              vertical: defaultPadding * 2,
+              horizontal: defaultPadding * 2,
             ),
-          );
-        },
-        itemCount: widget.rooms.length,
-      ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    widget.rooms[index].title,
+                  ),
+                ),
+                const Icon(Icons.navigate_next)
+              ],
+            ),
+          ),
+        );
+      },
+      itemCount: widget.rooms.length,
     );
   }
 }
