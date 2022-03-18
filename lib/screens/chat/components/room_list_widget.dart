@@ -1,6 +1,6 @@
 import 'package:example/constants.dart';
+import 'package:example/screens/chat/components/room_widget.dart';
 import 'package:example/screens/chat/model/room.dart';
-import 'package:example/screens/chat/widgets/room_widget.dart';
 import 'package:flutter/material.dart';
 
 class RoomList extends StatefulWidget {

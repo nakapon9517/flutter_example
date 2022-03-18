@@ -1,6 +1,6 @@
 import 'package:example/repositories/room_repository.dart';
+import 'package:example/screens/chat/components/room_list_widget.dart';
 import 'package:example/screens/chat/model/room.dart';
-import 'package:example/screens/chat/widgets/room_list_widget.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {

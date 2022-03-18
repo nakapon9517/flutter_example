@@ -39,7 +39,6 @@ class _RootState extends State<RootScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
         onTap: _onSelected,
       ),
       body: _pages[_selectedIndex],

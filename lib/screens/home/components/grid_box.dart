@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CardButton extends StatelessWidget {
-  const CardButton({Key? key, required this.title, required this.screen})
+class GridBox extends StatelessWidget {
+  const GridBox({Key? key, required this.title, required this.screen})
       : super(key: key);
 
   final String title;
