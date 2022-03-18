@@ -1,4 +1,6 @@
+import 'dart:ui';
 import 'package:example/constants.dart';
+import 'package:example/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -10,9 +12,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreen extends State<LoginScreen> {
-  String input = '12';
+  String id = '';
+  String password = '';
   bool _showPassword = false;
-  final items = List<String>.generate(100, (index) => index.toString());
 
   void _onChangeShowPassword() {
     setState(() {
@@ -26,66 +28,83 @@ class _LoginScreen extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final config = SizeConfig(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Text('Login'),
       ),
-      body: Scrollbar(
-        child: SingleChildScrollView(
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              children: <Widget>[
-                Image.asset(
-                  "assets/images/horizon-zero-dawn-arrow.jpg",
-                  fit: BoxFit.fitWidth,
-                ),
-                Container(
-                  width: double.infinity,
-                  alignment: Alignment.topLeft,
-                  margin: const EdgeInsets.only(
-                    top: 12,
+      body: SizedBox(
+        width: double.infinity,
+        height: config.height(),
+        child: Stack(
+          fit: StackFit.expand,
+          alignment: AlignmentDirectional.center,
+          children: <Widget>[
+            Image.asset(
+              "assets/images/vertical-image-min.png",
+              fit: BoxFit.cover,
+              height: config.height(),
+            ),
+            Positioned.fill(
+              child: Center(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 10.0,
+                    sigmaY: 10.0,
                   ),
-                  child: Column(children: [
+                  child: Container(
+                    color: Theme.of(context).backgroundColor.withOpacity(0.2),
+                  ),
+                ),
+              ),
+            ),
+            Positioned.fill(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
                     Container(
+                      margin: const EdgeInsets.only(
+                        top: defaultPadding,
+                        bottom: defaultPadding,
+                        left: defaultPadding / 2,
+                        right: defaultPadding / 2,
+                      ),
                       padding: const EdgeInsets.symmetric(
-                        vertical: 4,
-                        horizontal: 8,
+                        vertical: defaultPadding / 2,
+                        horizontal: defaultPadding,
                       ),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(12),
+                        color:
+                            Theme.of(context).backgroundColor.withOpacity(0.6),
                       ),
                       child: TextField(
                         decoration: const InputDecoration(
                           hintText: 'ID',
                           border: InputBorder.none,
                         ),
+                        style: Theme.of(context).textTheme.bodyMedium,
                         onChanged: (text) {
                           setState(() {
-                            input = (text);
+                            id = (text);
                           });
                         },
                       ),
                     ),
-                  ]),
-                ),
-                Container(
-                  width: double.infinity,
-                  alignment: Alignment.topLeft,
-                  margin: const EdgeInsets.only(
-                    top: 12,
-                  ),
-                  child: Column(children: [
                     Container(
+                      margin: const EdgeInsets.only(
+                        bottom: defaultPadding,
+                        left: defaultPadding / 2,
+                        right: defaultPadding / 2,
+                      ),
                       padding: const EdgeInsets.symmetric(
-                        vertical: 4,
-                        horizontal: 8,
+                        vertical: defaultPadding / 2,
+                        horizontal: defaultPadding,
                       ),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(12),
+                        color:
+                            Theme.of(context).backgroundColor.withOpacity(0.6),
                       ),
                       child: TextField(
                         obscureText: !_showPassword,
@@ -103,18 +122,17 @@ class _LoginScreen extends State<LoginScreen> {
                             },
                           ),
                         ),
+                        style: Theme.of(context).textTheme.bodyMedium,
                         onChanged: (text) {
                           setState(() {
-                            input = (text);
+                            password = (text);
                           });
                         },
                       ),
                     ),
                   ]),
-                ),
-              ],
             ),
-          ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
