@@ -7,6 +7,7 @@ import 'package:example/screens/home/components/flex_box.dart';
 import 'package:example/screens/home/components/grid_box.dart';
 import 'package:example/screens/login/login_screen.dart';
 import 'package:example/screens/slider/slider_screen.dart';
+import 'package:example/utils/url_launch.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -53,14 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onChangeTheme(BuildContext context) {
     Provider.of<MyTheme>(context, listen: false).toggle();
-  }
-
-  Future<void> _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 
   @override
@@ -166,19 +159,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   FlexBox(
                     title: 'GitHub',
                     func: () {
-                      _launchURL('https://github.com/nakapon9517');
+                      launchURL('https://github.com/nakapon9517');
                     },
                   ),
                   FlexBox(
                     title: 'pub.dev',
                     func: () {
-                      _launchURL('https://pub.dev/');
+                      launchURL('https://pub.dev/');
                     },
                   ),
                   FlexBox(
                     title: 'Flutter公式',
                     func: () {
-                      _launchURL('https://flutter.dev');
+                      launchURL('https://flutter.dev');
                     },
                   ),
                 ],
