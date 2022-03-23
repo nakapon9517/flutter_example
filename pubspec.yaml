@@ -24,6 +24,7 @@ dependencies:
   uuid: ^3.0.5
   provider: ^6.0.2
   any_link_preview: ^2.0.6
+  flutter_riverpod: ^1.0.3
 
 dev_dependencies:
   flutter_test:

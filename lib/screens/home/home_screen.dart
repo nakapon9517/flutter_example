@@ -1,6 +1,7 @@
 import 'package:example/components/app_drawer.dart';
 import 'package:example/constants.dart';
 import 'package:example/screens/chat_ui/chat_ui_screen.dart';
+import 'package:example/screens/fiverpod/riverpod_screen.dart';
 import 'package:example/screens/home/components/bottom_sheet.dart';
 import 'package:example/screens/home/components/carousel.dart';
 import 'package:example/screens/home/components/flex_box.dart';
@@ -53,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final double height = 240;
 
   void _onChangeTheme(BuildContext context) {
-    Provider.of<MyTheme>(context, listen: false).toggle();
+    // Provider.of<MyTheme>(context, listen: false).toggle();
   }
 
   @override
@@ -145,6 +146,16 @@ class _HomeScreenState extends State<HomeScreen> {
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
+                  FlexBox(
+                    title: 'river_pod',
+                    func: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<StatefulWidget>(
+                            builder: (context) => const Riverpod()),
+                      );
+                    },
+                  ),
                   FlexBox(
                     title: 'Bottom Sheet',
                     func: () {
