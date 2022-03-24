@@ -28,6 +28,9 @@ dependencies:
   open_mail_app: ^0.4.5
   flutter_email_sender: ^5.1.0
   path_provider: ^2.0.9
+  flutter_screen_lock: ^5.0.6+1
+  local_auth: ^1.1.11
+
 
 dev_dependencies:
   flutter_test:

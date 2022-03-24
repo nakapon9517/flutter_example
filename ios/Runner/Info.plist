@@ -66,5 +66,7 @@
 			<string>superhuman</string>
 			<string>protonmail</string>
 		</array>
+		<key>NSFaceIDUsageDescription</key>
+		<string>アプリを開く際に認証情報を使用します</string>
 	</dict>
 </plist>

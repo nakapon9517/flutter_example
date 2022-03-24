@@ -12,12 +12,15 @@ import 'package:example/utils/open_mailer.dart';
 import 'package:example/utils/send_email.dart';
 import 'package:example/utils/url_launch.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screen_lock/flutter_screen_lock.dart';
+import 'package:local_auth/error_codes.dart' as auth_error;
+import 'package:local_auth/local_auth.dart';
 
 import '../../repositories/local_storage_repository.dart';
-import '../../utils/theme.dart';
 import '../chat/chat_screen.dart';
+
+final inputController = InputController();
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required this.title}) : super(key: key);
@@ -57,6 +60,40 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onChangeTheme(BuildContext context) {
     // Provider.of<MyTheme>(context, listen: false).toggle();
+  }
+
+  Future<void> localAuth(BuildContext context) async {
+    final localAuth = LocalAuthentication();
+    try {
+      bool didAuthenticate = await localAuth.authenticate(
+          localizedReason: 'Please authenticate to show account balance');
+      if (didAuthenticate) {
+        Navigator.pop(context);
+      }
+    } on PlatformException catch (e) {
+      switch (e.code) {
+        case auth_error.lockedOut:
+          print('lockdOut');
+          break;
+        case auth_error.notAvailable:
+          print('notAvailable');
+          break;
+        case auth_error.notEnrolled:
+          print('notEnrolled');
+          break;
+        case auth_error.otherOperatingSystem:
+          print('otherOperatingSystem');
+          break;
+        case auth_error.passcodeNotSet:
+          print('passcodeNotSet');
+          break;
+        case auth_error.permanentlyLockedOut:
+          print('permanentlyLockedOut');
+          break;
+        default:
+          print('othe error >>${e.message.toString()}');
+      }
+    }
   }
 
   @override
@@ -176,15 +213,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                   FlexBox(
-                    title: 'pub.dev',
+                    title: 'pub.dev(to OS browser)',
                     func: () {
                       launchURL('https://pub.dev/', true);
-                    },
-                  ),
-                  FlexBox(
-                    title: 'Flutter公式',
-                    func: () {
-                      launchURL('https://flutter.dev', false);
                     },
                   ),
                   FlexBox(
@@ -203,12 +234,32 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     },
                   ),
-                  // FlexBox(
-                  //   title: 'Send email',
-                  //   func: () {
-                  //     const SendEmail().sendEmail();
-                  //   },
-                  // ),
+                  FlexBox(
+                    title: 'screen lock',
+                    func: () {
+                      screenLock<dynamic>(
+                        context: context,
+                        title: const Text('パスワード'),
+                        confirmTitle: const Text('確認'),
+                        correctString: '1234',
+                        canCancel: true,
+                        confirmation: false,
+                        didConfirmed: (dynamic matchedText) {
+                          print(matchedText);
+                        },
+                        inputController: inputController,
+                        customizedButtonChild: const Icon(
+                          Icons.fingerprint,
+                        ),
+                        customizedButtonTap: () async {
+                          await localAuth(context);
+                        },
+                        didOpened: () async {
+                          await localAuth(context);
+                        },
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
