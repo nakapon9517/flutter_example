@@ -1,6 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.app.example.example">
-   <application
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.app.example.example">
+    <application
         android:label="example"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
@@ -35,6 +34,10 @@
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
         </intent>
     </queries>
 </manifest>

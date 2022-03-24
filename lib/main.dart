@@ -22,7 +22,6 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final myTheme = ref.watch(themeProvider);
-    print(myTheme);
     return MaterialApp(
       theme: myTheme,
       home: const RootScreen(),

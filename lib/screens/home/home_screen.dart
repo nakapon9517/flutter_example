@@ -8,6 +8,8 @@ import 'package:example/screens/home/components/flex_box.dart';
 import 'package:example/screens/home/components/grid_box.dart';
 import 'package:example/screens/login/login_screen.dart';
 import 'package:example/screens/slider/slider_screen.dart';
+import 'package:example/utils/open_mailer.dart';
+import 'package:example/utils/send_email.dart';
 import 'package:example/utils/url_launch.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -185,6 +187,28 @@ class _HomeScreenState extends State<HomeScreen> {
                       launchURL('https://flutter.dev');
                     },
                   ),
+                  FlexBox(
+                    title: 'Open mailer',
+                    func: () {
+                      const OpenMailer().openMailApp();
+                    },
+                  ),
+                  FlexBox(
+                    title: 'email send',
+                    func: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<StatefulWidget>(
+                            builder: (context) => const EmailSender()),
+                      );
+                    },
+                  ),
+                  // FlexBox(
+                  //   title: 'Send email',
+                  //   func: () {
+                  //     const SendEmail().sendEmail();
+                  //   },
+                  // ),
                 ],
               ),
             ),

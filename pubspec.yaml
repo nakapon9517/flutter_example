@@ -25,6 +25,9 @@ dependencies:
   provider: ^6.0.2
   any_link_preview: ^2.0.6
   flutter_riverpod: ^1.0.3
+  open_mail_app: ^0.4.5
+  flutter_email_sender: ^5.1.0
+  path_provider: ^2.0.9
 
 dev_dependencies:
   flutter_test:
