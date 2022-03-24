@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:example/components/app_drawer.dart';
 import 'package:example/constants.dart';
 import 'package:example/screens/chat_ui/chat_ui_screen.dart';
@@ -202,6 +205,50 @@ class _HomeScreenState extends State<HomeScreen> {
                         context: context,
                         builder: (context) {
                           return const BottomSheetModal();
+                        },
+                      );
+                    },
+                  ),
+                  FlexBox(
+                    title: 'Emoji picker',
+                    func: () {
+                      showModalBottomSheet<Widget>(
+                        context: context,
+                        builder: (context) {
+                          return EmojiPicker(
+                            onEmojiSelected: (category, emoji) {
+                              print(emoji.toString());
+                            },
+                            onBackspacePressed: () {
+                              print('on tap backspace');
+                            },
+                            config: Config(
+                                columns: 7,
+                                emojiSizeMax: 32 *
+                                    (Platform.isIOS
+                                        ? 1.30
+                                        : 1.0), // Issue: https://github.com/flutter/flutter/issues/28894
+                                verticalSpacing: 0,
+                                horizontalSpacing: 0,
+                                initCategory: Category.RECENT,
+                                bgColor: Color(0xFFF2F2F2),
+                                indicatorColor: Colors.blue,
+                                iconColor: Colors.grey,
+                                iconColorSelected: Colors.blue,
+                                progressIndicatorColor: Colors.blue,
+                                backspaceColor: Colors.blue,
+                                skinToneDialogBgColor: Colors.white,
+                                skinToneIndicatorColor: Colors.grey,
+                                enableSkinTones: true,
+                                showRecentsTab: true,
+                                recentsLimit: 28,
+                                noRecentsText: "No Recents",
+                                noRecentsStyle: const TextStyle(
+                                    fontSize: 20, color: Colors.black26),
+                                tabIndicatorAnimDuration: kTabScrollDuration,
+                                categoryIcons: const CategoryIcons(),
+                                buttonMode: ButtonMode.MATERIAL),
+                          );
                         },
                       );
                     },

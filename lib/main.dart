@@ -1,12 +1,10 @@
-import 'package:example/constants.dart';
 import 'package:example/screens/root_screen.dart';
 import 'package:example/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:provider/provider.dart';
 
-// riverpod
+// use riverpod
 final counterProvider = StateProvider((ref) => 0);
 final themeProvider = StateNotifierProvider<MyThemeRiverpod, ThemeData>(
     (ref) => MyThemeRiverpod());
@@ -30,7 +28,7 @@ class MyApp extends ConsumerWidget {
   }
 }
 
-// provider
+// use provider
 // void main() {
 //   initializeDateFormatting().then((_) => runApp(const MyApp()));
 // }
