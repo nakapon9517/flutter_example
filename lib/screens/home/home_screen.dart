@@ -172,19 +172,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   FlexBox(
                     title: 'GitHub',
                     func: () {
-                      launchURL('https://github.com/nakapon9517');
+                      launchURL('https://github.com/nakapon9517', false);
                     },
                   ),
                   FlexBox(
                     title: 'pub.dev',
                     func: () {
-                      launchURL('https://pub.dev/');
+                      launchURL('https://pub.dev/', true);
                     },
                   ),
                   FlexBox(
                     title: 'Flutter公式',
                     func: () {
-                      launchURL('https://flutter.dev');
+                      launchURL('https://flutter.dev', false);
                     },
                   ),
                   FlexBox(

@@ -215,7 +215,7 @@ class LinkMessage extends StatelessWidget {
       removeElevation: false,
       boxShadow: const [BoxShadow(blurRadius: 3, color: Colors.grey)],
       onTap: () {
-        launchURL(url);
+        launchURL(url, false);
       },
     );
   }
