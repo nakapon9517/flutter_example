@@ -1,3 +1,4 @@
+import 'package:example/utils/app_router.dart';
 import 'package:flutter/material.dart';
 
 class GridBox extends StatelessWidget {
@@ -22,11 +23,7 @@ class GridBox extends StatelessWidget {
         onPrimary: Theme.of(context).primaryColor,
       ),
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute<StatefulWidget>(
-              builder: (context) => screen as StatefulWidget),
-        );
+        AppRouter(context).push(screen);
       },
     );
   }

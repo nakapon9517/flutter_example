@@ -11,6 +11,7 @@ import 'package:example/screens/home/components/flex_box.dart';
 import 'package:example/screens/home/components/grid_box.dart';
 import 'package:example/screens/login/login_screen.dart';
 import 'package:example/screens/slider/slider_screen.dart';
+import 'package:example/utils/app_router.dart';
 import 'package:example/utils/open_mailer.dart';
 import 'package:example/utils/send_email.dart';
 import 'package:example/utils/url_launch.dart';
@@ -128,24 +129,16 @@ class _HomeScreenState extends State<HomeScreen> {
               delegate: SliverChildListDelegate(
                 [
                   FlexBox(
-                    title: 'original_chat',
+                    title: 'chat',
                     color: Colors.amber[600],
                     func: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<StatefulWidget>(
-                            builder: (context) => const ChatScreen()),
-                      );
+                      AppRouter(context).push(ChatScreen());
                     },
                   ),
                   FlexBox(
                     title: 'flutter_chat_ui',
                     func: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<StatefulWidget>(
-                            builder: (context) => const ChatUiScreen()),
-                      );
+                      AppRouter(context).push(const ChatUiScreen());
                     },
                   ),
                   FlexBox(
@@ -191,11 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   FlexBox(
                     title: 'river_pod',
                     func: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<StatefulWidget>(
-                            builder: (context) => const Riverpod()),
-                      );
+                      AppRouter(context).push(const Riverpod());
                     },
                   ),
                   FlexBox(
@@ -274,11 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   FlexBox(
                     title: 'email send',
                     func: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<StatefulWidget>(
-                            builder: (context) => const EmailSender()),
-                      );
+                      AppRouter(context).push(const EmailSender());
                     },
                   ),
                   FlexBox(

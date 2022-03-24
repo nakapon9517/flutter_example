@@ -1,6 +1,7 @@
 import 'package:example/constants.dart';
 import 'package:example/screens/chat/components/room_widget.dart';
 import 'package:example/screens/chat/model/room.dart';
+import 'package:example/utils/app_router.dart';
 import 'package:flutter/material.dart';
 
 class RoomList extends StatefulWidget {
@@ -21,12 +22,7 @@ class _RoomListState extends State<RoomList> {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<StatefulWidget>(
-                builder: (context) => RoomWidget(room: widget.rooms[index]),
-              ),
-            );
+            AppRouter(context).push(RoomWidget(room: widget.rooms[index]));
           },
           child: Container(
             color: Theme.of(context).scaffoldBackgroundColor,
